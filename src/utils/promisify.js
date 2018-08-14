@@ -16,12 +16,22 @@ const callback = (fn, context) => (...args) => {
   return defer.promise;
 };
 
-module.exports = function (target) {
-  const result = {};
+const defaultOptions = {
+  context: null,
+}
 
-  for (const key in target) {
-    result[key] = callback(target[key], target);
+module.exports = function (target, opts) {
+  const options = { ...defaultOptions, ...opts };
+
+  if (typeof target === 'function') {
+    return callback(target, options.context);
+  } else {
+    const result = {};
+
+    for (const key in target) {
+      result[key] = callback(target[key], target);
+    }
+
+    return result;
   }
-
-  return result;
 };

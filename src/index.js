@@ -5,9 +5,11 @@ const bodyParser = require('koa-bodyparser');
 const logic = require('./logic');
 
 const app = new Koa()
-  , router = new Router();
+  , router = new Router()
+  , apiRouter = logic(new Router());
 
-logic(router);
+router.use('/api/v1', apiRouter.routes(), apiRouter.allowedMethods());
+
 app
   .use(bodyParser())
   .use(async (ctx, next) => {
