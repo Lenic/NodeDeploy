@@ -1,0 +1,36 @@
+version: "3.5"
+
+services:
+
+  web:
+    image: jenkins/jenkins:lts
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1g
+      placement:
+        constraints:
+          - node.hostname == network-disk
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+      - target: 50000
+        published: 50000
+        protocol: tcp
+        mode: host
+    volumes:
+      - home:/var/jenkins_home
+    networks:
+      - jenkins
+
+volumes:
+  home:
+
+networks:
+  jenkins:
