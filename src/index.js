@@ -12,10 +12,10 @@ router.use('/api/v1', apiRouter.routes(), apiRouter.allowedMethods());
 
 app
   .use(bodyParser())
-  .use(async (ctx, next) => {
-    console.log(`Process ${ctx.request.method} ${ctx.url} ……`);
+  // .use(async (ctx, next) => {
+  //   console.log(`Process ${ctx.request.method} ${ctx.url} ……`);
 
-    await next();
-  })
+  //   await next();
+  // })
   .use(router.routes())
   .listen(3000, () => console.log('listening at http://localhost:3000'));
