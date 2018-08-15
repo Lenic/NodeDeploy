@@ -1,0 +1,55 @@
+version: "3.5"
+
+services:
+
+  api:
+    image: node:alpine
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1g
+      placement:
+        constraints:
+          - node.hostname == network-disk
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: host
+    volumes:
+      - home:/var/jenkins_home
+    networks:
+      - jenkins
+
+  etcd:
+    image: lenic/etcd:3.3.9
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1g
+      placement:
+        constraints:
+          - node.hostname == network-disk
+    ports:
+      - target: 2380
+        published: 3001
+        protocol: tcp
+        mode: host
+    volumes:
+      - home:/var/jenkins_home
+    networks:
+      - jenkins
+
+volumes:
+  home:
+
+networks:
+  jenkins:
