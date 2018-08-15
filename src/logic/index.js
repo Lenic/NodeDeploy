@@ -2,13 +2,13 @@ const { etcdPromise, jenkinsPromise } = require('./config');
 
 module.exports = function (router) {
 
-  // 获取所有可使用的部署任务
-  router.get('/tasks', async ctx => {
+  // 获取页面初始化需要的所有数据
+  router.get('/initial', async ctx => {
     const jenkins = await jenkinsPromise
       , data = await jenkins.info()
       , etcd = await etcdPromise;
 
-    const tasks = data
+    const list = data
       .jobs
       .map(v => v.name)
       .filter(v => v.indexOf('deploy-') === 0)
@@ -18,15 +18,24 @@ module.exports = function (router) {
           , projects = keys.map(v => v.slice(prefix.length));
 
         return {
-          machine: v,
+          name: v,
           projects,
         };
       });
 
-    const result = await Promise.all(tasks);
+    const notificationPrefix = 'node-deploy/notifications/'
+      , notifications = etcd
+        .getAll()
+        .prefix(notificationPrefix)
+        .keys()
+        .then(v => v.map(x => x.slice(notificationPrefix.length)));
 
+    const result = await Promise.all([Promise.all(list), notifications]);
     ctx.type = 'application/json';
-    ctx.body = JSON.stringify(result);
+    ctx.body = JSON.stringify({
+      machines: result[0],
+      notifications: result[1],
+    });
   });
 
   // 部署特定的工程
@@ -34,7 +43,7 @@ module.exports = function (router) {
     const { body } = ctx.request
       , jenkins = await jenkinsPromise
       , etcd = await etcdPromise
-      , notification_url = await etcd.get(`node-deploy/notifications/${body.project}`).string()
+      , notification_url = await etcd.get(`node-deploy/notifications/${body.notification}`).string()
       , urlInfo = body.url.split('/').filter(v => v)
       , [project_name, filename] = urlInfo.slice(urlInfo.length - 2)
       , work_path = await etcd.get(`node-deploy/${body.machine}/work_path/${body.project}`).string()
@@ -61,6 +70,8 @@ module.exports = function (router) {
     ctx.body = JSON.stringify({
       id,
       machine: body.machine,
+      project: body.project,
+      notification: body.notification,
     });
   });
 
