@@ -17,7 +17,7 @@ services:
           - node.hostname == network-disk
     ports:
       - target: 3000
-        published: 3000
+        published: 9001
         protocol: tcp
         mode: host
     volumes:
