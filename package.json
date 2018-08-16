@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
-    "prod": "pm2 start launch.yml"
+    "prod": "pm2-runtime launch.yml"
   },
   "keywords": [],
   "author": "",
