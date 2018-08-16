@@ -1,2 +1,2 @@
 jenkinsURL: 'http://admin:Helian0.123@10.20.255.88:8080'
-etcdURL: 'http://10.20.1.197:2379'
+etcdURL: 'http://git.helianshare.com:2379'
