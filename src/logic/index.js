@@ -1,12 +1,11 @@
-const { etcdPromise, jenkinsPromise } = require('./config');
+const { etcd, getJenkinsClient } = require('./config');
 
 module.exports = function (router) {
 
   // 获取页面初始化需要的所有数据
   router.get('/initial', async ctx => {
-    const jenkins = await jenkinsPromise
-      , data = await jenkins.info()
-      , etcd = await etcdPromise;
+    const jenkins = getJenkinsClient()
+      , data = await jenkins.info();
 
     const list = data
       .jobs
@@ -41,8 +40,7 @@ module.exports = function (router) {
   // 部署特定的工程
   router.post('/build', async ctx => {
     const { body } = ctx.request
-      , jenkins = await jenkinsPromise
-      , etcd = await etcdPromise
+      , jenkins = getJenkinsClient()
       , notification_url = await etcd.get(`node-deploy/notifications/${body.notification}`).string()
       , urlInfo = body.url.split('/').filter(v => v)
       , [project_name, filename] = urlInfo.slice(urlInfo.length - 2)

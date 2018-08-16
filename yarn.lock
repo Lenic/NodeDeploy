@@ -338,7 +338,7 @@ co-body@^6.0.0:
     raw-body "^2.3.3"
     type-is "^1.6.16"
 
-co@4.6.0, co@^4.6.0:
+co@^4.6.0:
   version "4.6.0"
   resolved "http://registry.npm.taobao.org/co/download/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
@@ -521,10 +521,6 @@ escape-regexp@0.0.1:
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "http://registry.npm.taobao.org/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
-
-esprima@^4.0.0:
-  version "4.0.1"
-  resolved "http://registry.npm.taobao.org/esprima/download/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
 
 etcd3@^0.2.11:
   version "0.2.11"
@@ -937,20 +933,9 @@ jenkins@^0.22.1:
   dependencies:
     papi "^0.29.0"
 
-js-yaml@3.9.1:
-  version "3.9.1"
-  resolved "http://registry.npm.taobao.org/js-yaml/download/js-yaml-3.9.1.tgz#08775cebdfdd359209f0d2acd383c8f86a6904a0"
-  dependencies:
-    argparse "^1.0.7"
-    esprima "^4.0.0"
-
 json-stringify-safe@5.0.1:
   version "5.0.1"
   resolved "http://registry.npm.taobao.org/json-stringify-safe/download/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
-
-junk@2.1.0:
-  version "2.1.0"
-  resolved "http://registry.npm.taobao.org/junk/download/junk-2.1.0.tgz#f431b4b7f072dc500a5f10ce7f4ec71930e70134"
 
 keygrip@~1.0.2:
   version "1.0.2"
@@ -1218,6 +1203,10 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "http://registry.npm.taobao.org/negotiator/download/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+node-env-file@^0.1.8:
+  version "0.1.8"
+  resolved "http://registry.npm.taobao.org/node-env-file/download/node-env-file-0.1.8.tgz#fccb7b050f735b5a33da9eb937cf6f1ab457fb69"
+
 node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "http://registry.npm.taobao.org/node-pre-gyp/download/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
@@ -1232,15 +1221,6 @@ node-pre-gyp@^0.10.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
-
-node-yaml@^3.1.1:
-  version "3.1.1"
-  resolved "http://registry.npm.taobao.org/node-yaml/download/node-yaml-3.1.1.tgz#4f93d0aa97475530bc00db03564dfde9c6c5691b"
-  dependencies:
-    co "4.6.0"
-    js-yaml "3.9.1"
-    junk "2.1.0"
-    promise-fs "1.2.3"
 
 nopt@^4.0.1:
   version "4.0.1"
@@ -1385,20 +1365,6 @@ pidusage@2.0.13:
   version "2.0.13"
   resolved "http://registry.npm.taobao.org/pidusage/download/pidusage-2.0.13.tgz#2f0492463b09e8179d763e68faa665a1b2fbe11c"
 
-pify@2.3.0:
-  version "2.3.0"
-  resolved "http://registry.npm.taobao.org/pify/download/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
-
-pinkie-promise@2.0.1:
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/pinkie-promise/download/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
-  dependencies:
-    pinkie "^2.0.0"
-
-pinkie@^2.0.0:
-  version "2.0.4"
-  resolved "http://registry.npm.taobao.org/pinkie/download/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
-
 pm2-axon-rpc@^0.5.0, pm2-axon-rpc@^0.5.1:
   version "0.5.1"
   resolved "http://registry.npm.taobao.org/pm2-axon-rpc/download/pm2-axon-rpc-0.5.1.tgz#ad3c43c43811c71f13e5eee2821194d03ceb03fe"
@@ -1471,13 +1437,6 @@ posix-character-classes@^0.1.0:
 process-nextick-args@~2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/process-nextick-args/download/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
-
-promise-fs@1.2.3:
-  version "1.2.3"
-  resolved "http://registry.npm.taobao.org/promise-fs/download/promise-fs-1.2.3.tgz#402410f92edd8c3978ee5552369f1c5bebccfc22"
-  dependencies:
-    pify "2.3.0"
-    pinkie-promise "2.0.1"
 
 promptly@^2:
   version "2.2.0"
