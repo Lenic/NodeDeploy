@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
   web:
-    image: node:alpine
+    image: jenkins/jenkins:lts
     deploy:
       replicas: 1
       restart_policy:
@@ -16,15 +16,21 @@ services:
         constraints:
           - node.hostname == network-disk
     ports:
-      - target: 3000
-        published: 3000
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+      - target: 50000
+        published: 50000
         protocol: tcp
         mode: host
     volumes:
-      - ../:/data
+      - home:/var/jenkins_home
     networks:
-      - deploy
-    command: sh -c 'cd /data && yarn && yarn run prod'
+      - jenkins
+
+volumes:
+  home:
 
 networks:
-  deploy:
+  jenkins:

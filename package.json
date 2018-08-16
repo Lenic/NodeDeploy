@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "prod": "pm2 start launch.yml"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.6",
-    "node-yaml": "^3.1.1"
+    "node-yaml": "^3.1.1",
+    "pm2": "^3.0.3"
   }
 }
