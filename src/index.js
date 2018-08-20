@@ -12,7 +12,10 @@ const app = new Koa()
 router.use('/api/v1', apiRouter.routes(), apiRouter.allowedMethods());
 
 app
-  .use(cors({ maxAge: 86400 }))
+  .use(cors({
+    origin: '*',
+    maxAge: 86400,
+  }))
   .use(bodyParser())
   // .use(async (ctx, next) => {
   //   console.log(`Process ${ctx.request.method} ${ctx.url} ……`);

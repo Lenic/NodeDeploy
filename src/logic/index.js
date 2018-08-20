@@ -42,7 +42,7 @@ module.exports = function (router) {
     const { body } = ctx.request
       , jenkins = getJenkinsClient()
       , notification_url = await etcd.get(`node-deploy/notifications/${body.notification}`).string()
-      , urlInfo = body.url.split('/').filter(v => v)
+      , urlInfo = body.packageUrl.split('/').filter(v => v)
       , [project_name, filename] = urlInfo.slice(urlInfo.length - 2)
       , work_path = await etcd.get(`node-deploy/${body.machine}/work_path/${body.project}`).string()
       , list = filename.slice(0, filename.length - 7).split('-')
