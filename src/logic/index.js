@@ -73,5 +73,21 @@ module.exports = function (router) {
     });
   });
 
+  // 获取批量部署列表
+  router.get('/bulk', async ctx => {
+    const prefix = 'node-deploy/bulk/'
+      , keys = await etcd.getAll().prefix(prefix).keys();
+
+    ctx.type = 'application/json';
+    ctx.body = JSON.stringify(keys.map(v => v.substr(prefix.length)));
+  });
+
+  router.get('/bulk/:id', async ctx => {
+    const key = `node-deploy/bulk/${ctx.params.id}`;
+
+    ctx.type = 'application/json';
+    ctx.body = await etcd.get(key).string();
+  });
+
   return router;
 }
